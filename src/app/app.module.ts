@@ -8,6 +8,7 @@ import { ReplacePipe } from "./pipe/replace.pipe";
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { RouterModule } from "@angular/router";
 import { Error404Component } from "./error-404/error-404.component";
+import { CourseInfoComponent } from "./courses/course-info.component";
 
 @NgModule({
   declarations: [
@@ -16,18 +17,22 @@ import { Error404Component } from "./error-404/error-404.component";
     StarComponent,
     ReplacePipe,
     NavBarComponent,
-    Error404Component
+    Error404Component,
+    CourseInfoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot([
-      { // path: '' indica que vai ativar a rota na raíz da app
-        path: '', redirectTo: 'courses', pathMatch: 'full' // este é um objeto de rota
-      },
       {
         path: 'courses', component: CourseListComponent // rota de listagem de cursos
       },
+      {
+        path: 'courses/info/:id', component: CourseInfoComponent
+      }, // :id indica que vamos passar um id para o PathVariable
+      {
+        path: '', redirectTo: 'courses', pathMatch: 'full' // este é um objeto de rota
+      }, // path: '' indica que vai ativar a rota na raíz da app
       {
         path: '**', component: Error404Component
       }
