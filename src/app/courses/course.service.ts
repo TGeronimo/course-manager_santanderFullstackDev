@@ -10,6 +10,19 @@ export class CourseService {
     return COURSES;
   }
 
+  retrieveById(id: number): Course {
+    return COURSES.find((courseIterator: Course) => courseIterator.id === id)!;
+    // I had to insert the '!' (non null assertion operator) operator to avoid the error TS2322
+    // https://stackoverflow.com/questions/54496398/typescript-type-string-undefined-is-not-assignable-to-type-string
+  }
+
+  save(course: Course): void {
+    if (course.id) {
+      const index = COURSES.findIndex((courseIterator: Course) => courseIterator.id === course.id);
+      COURSES[index] = course;
+    }
+  }
+
 }
 
 var COURSES: Course[] = [
