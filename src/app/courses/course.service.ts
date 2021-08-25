@@ -1,25 +1,34 @@
 import { Course } from "./course";
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
+  // backend na porta 3100
+  private courseUrl: string = 'http://localhost:3100/api/courses';
 
-  retrieveAll(): Course[] {
-    return COURSES;
+  constructor(private httpClient: HttpClient) {
+
   }
 
-  retrieveById(id: number): Course {
-    return COURSES.find((courseIterator: Course) => courseIterator.id === id)!;
+  retrieveAll(): Observable<Course[]> {
+    return this.httpClient.get<Course[]>(this.courseUrl);
+  }
+
+  retrieveById(id: number): Observable<Course> {
+    return this.httpClient.get<Course>(`${this.courseUrl}/${id}`);
     // I had to insert the '!' (non null assertion operator) operator to avoid the error TS2322
     // https://stackoverflow.com/questions/54496398/typescript-type-string-undefined-is-not-assignable-to-type-string
   }
 
-  save(course: Course): void {
+  save(course: Course): Observable<Course> {
     if (course.id) {
-      const index = COURSES.findIndex((courseIterator: Course) => courseIterator.id === course.id);
-      COURSES[index] = course;
+      return this.httpClient.put<Course>(`${this.courseUrl}/${course.id}`, course);
+    } else {
+      return this.httpClient.post<Course>(`${this.courseUrl}`, course);
     }
   }
 
