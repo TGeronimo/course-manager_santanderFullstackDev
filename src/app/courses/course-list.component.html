@@ -32,8 +32,9 @@
           <app-star [rating]="course.rating"></app-star>
         </td>
         <td>
-          <a [routerLink]="['/courses/info', course.id]" class="btn btn-primary">Edit</a>
+          <a [routerLink]="['/courses/info', course.id]" class="btn btn-primary m-2">Edit</a>
           <!-- course.id é um PathVariable, ou seja, um atributo de URL -->
+          <button (click)="deleteById(course.id)" class="btn btn-danger">Delete</button>
         </td>
       </tr>
     </tbody>
