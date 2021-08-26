@@ -3,44 +3,34 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
+import { CourseModule } from "./courses/course-module";
 
 import { AppComponent } from './app.component';
-import { CourseListComponent } from './courses/course-list.component';
-import { StarComponent } from "./star/star.component";
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { Error404Component } from "./error-404/error-404.component";
-import { CourseInfoComponent } from "./courses/course-info.component";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { ReplacePipe } from "./pipe/replace.pipe";
 
 @NgModule({
   declarations: [
     AppComponent,
-    CourseListComponent,
-    StarComponent,
-    ReplacePipe,
     NavBarComponent,
     Error404Component,
-    CourseInfoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    CourseModule,
     RouterModule.forRoot([
-      {
-        path: 'courses', component: CourseListComponent // rota de listagem de cursos
-      },
-      {
-        path: 'courses/info/:id', component: CourseInfoComponent
-      }, // :id indica que vamos passar um id para o PathVariable
       {
         path: '', redirectTo: 'courses', pathMatch: 'full' // este é um objeto de rota
       }, // path: '' indica que vai ativar a rota na raíz da app
       {
         path: '**', component: Error404Component
       }
-    ])
+    ]),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
