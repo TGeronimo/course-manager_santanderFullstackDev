@@ -8,13 +8,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
-import { Error404Component } from "./error-404/error-404.component";
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    Error404Component
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -25,10 +23,7 @@ import { Error404Component } from "./error-404/error-404.component";
     RouterModule.forRoot([
       {
         path: '', redirectTo: 'courses', pathMatch: 'full' // este é um objeto de rota
-      }, // path: '' indica que vai ativar a rota na raíz da app
-      {
-        path: '**', component: Error404Component
-      }
+      } // path: '' indica que vai ativar a rota na raíz da app
     ]),
     FontAwesomeModule
   ],
