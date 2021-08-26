@@ -3,25 +3,25 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
-import { CourseModule } from "./courses/course-module";
+import { CourseModule } from './courses/course-module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
-import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { Error404Component } from "./error-404/error-404.component";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
-    Error404Component,
+    Error404Component
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     CourseModule,
+    CoreModule,
     RouterModule.forRoot([
       {
         path: '', redirectTo: 'courses', pathMatch: 'full' // este é um objeto de rota

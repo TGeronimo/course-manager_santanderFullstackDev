@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
-import { ReplacePipe } from "../pipe/replace.pipe";
-// import { BrowserModule } from '@angular/platform-browser';
-import { StarComponent } from "../star/star.component";
+import { StarModule } from "../shared/component/star/star.module";
+import { AppPipeModule } from "../shared/pipe/app-pipe.module";
 import { CourseListComponent } from "./course-list.component";
 import { CourseInfoComponent } from "./course-info.component";
 
@@ -14,13 +13,12 @@ import { CourseInfoComponent } from "./course-info.component";
   declarations: [
     CourseListComponent,
     CourseInfoComponent,
-    ReplacePipe,
-    StarComponent
-  ],
+    ],
   imports: [
     FormsModule,
     CommonModule,
-    // BrowserModule,
+    StarModule,
+    AppPipeModule,
     RouterModule.forChild([
       {
         path: 'courses', component: CourseListComponent // rota de listagem de cursos
